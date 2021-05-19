@@ -4,7 +4,6 @@ from django.http import HttpResponseRedirect
 
 
 #from .models import Leads
-#test
 
 
 def home(request):
