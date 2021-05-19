@@ -1,0 +1,36 @@
+{% extends "generic.html" %}
+{% block contents %}
+    <div class="row justify-content-md-center">
+        <div class="col-sm-8">
+            {% if var %}
+                <div class="jumbotron" id="simstart">
+                    <h1>Virus Spread Simulation</h1>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p class="lead">Choose parameters</p>
+                            <form>
+                                <div class="form-group">
+                                    <label for="mortalityRate">Mortality Rate</label>
+                                    <input type="number" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="0.1" min="0.0" max="1.0" step="0.05" id="n" oninput="(validity.valid)||(value='');">
+                                    <small id="mortHelp" class="form-text text-muted">0.0 - 1.0</small>
+                                </div>
+                                <p><a type="submit "class="btn btn-success" href="{% url 'form:simulation' %}">Start!</a></p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="jumbotron" id="simstart">
+                    <h1>Virus Spread Simulation</h1>
+                    <div class="row">
+                        <div class="col-sm-9">
+                            <p>Another simulation has already been started :(</p>
+                            <p><a class="btn btn-success" href="{% url 'form:simulation' %}">Go to the simulation</a></p>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+{% block scripts %}<!-- /scripts -->{% endblock %}
