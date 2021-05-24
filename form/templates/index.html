@@ -61,7 +61,9 @@
                            <label for="maxRounds">Maximum Amount of Numbers</label>
                             <input type="number" name="max_rounds" class="form-control" id="test-label" aria-describedby="roundsHelp" placeholder="10" min="0">
                         </form>
-                        <button type="button" type = "submit" form = "test-form" id="test-button">Click Me!</button>
+                        <button type="button" type = "submit"  id="test-button">Get stats.</button>
+                        <button type="button" type = "submit"  id="test-button2">Allocate city.</button>
+                        <button type="button" type = "submit"  id="test-button3">Run simulation.</button>
                     </div>
                 </div></div>
             {% else %}
@@ -101,7 +103,7 @@
 	var form_data = $(this).serialize(); //Encode form elements for submission
 
 	$.post( post_url, form_data, function( response ) {});
-});    */
+    });    */
     </script>
     <script>
 
@@ -115,33 +117,38 @@
 
     }   );*/
 
-  $("#test-button").click(function(){
-      var aux_data = {"individuals": 2000,"incubation": 2,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "True","scale_city": 200,"max_rounds": 1}
-     jQuery.ajax ({
-    url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
-    type: "POST",
-    data: JSON.stringify(aux_data),
-    dataType: "json",
-    contentType: "application/json"
-	}).done(function(data){
-	}).fail(function(xhr, error, error2){
-		console.log(error2);
-	})
-    }   );
+    $("#test-button3").click(function(){
+            var aux_data = {"individuals": 2000,"incubation": 2,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "True","scale_city": 200,"max_rounds": 1}
+
+            jQuery.ajax ({
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
+                type: "POST",
+                data: JSON.stringify(aux_data),
+                dataType: "json",
+                contentType: "application/json"
+	        }).done(function(data){console.log(data)}).fail(function(xhr, error, error2){console.log(error);console.log(error2);})
+    });
 
 
-   /* $("").click(function(){
-        var a = document.getElementById("test-label").value;
-        var input = document.getElementById("test-label").value;
-        var i = Number(input)
-        var dict = {individuals: 2000, incubation: 2, symptomatic: 4, immunity: 14, mortality: 10, beacons: "True",
-            scale_city: 200, max_rounds: 1};
-        var res = JSON.stringify(dict);
-        console.log(res);
-        $.get("https://ehno8ok3r3.execute-api.eu-west-1.amazonaws.com/retrieve_stats?id=1", function(data, status){
+    $("#test-button2").click(function(){
+            var aux_data = {"individuals": 2000,"incubation": 2,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "True","scale_city": 200,"max_rounds": 1}
+
+            jQuery.ajax ({
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
+                type: "POST",
+                data: JSON.stringify(aux_data),
+                dataType: "json",
+                contentType: "application/json"
+	        }).done(function(data){console.log(data)}).fail(function(xhr, error, error2){console.log(error);console.log(error2);})
+    });
+
+
+    $("#test-button").click(function(){
+
+        $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
             console.log(data)
         });
 
-    }   );*/
+    });
     </script>
 {% endblock %}
