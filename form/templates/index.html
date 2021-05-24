@@ -57,7 +57,7 @@
                                 <small id="beaconsHelp" class="form-text text-muted pb-3">Use beacons?</small>
                             </div>
                             {% csrf_token %}<!--Necessary tag...-->
-                            <input type="hidden" name="id_simulation">
+                            <input type="hidden" name="id_simulation" id="id_simulation">
                         </form>
 
 
@@ -86,7 +86,6 @@
 
     <script>
 
-
     $("#test-button").click(function(){
 
             var individuals= document.getElementById("individuals").value;
@@ -96,7 +95,7 @@
             var mortality_rate=document.getElementById("mortalityRate").value;
             var scale_city=document.getElementById("scaleCity").value;
             var max_rounds=document.getElementById("maxRounds").value;
-            var beacons=""
+            var beacons="";
 
             if ($('#beacons').is(":checked"))
             {
