@@ -7,7 +7,8 @@
                 <div class="row">
                     <div class="col-sm-9">
                         <p class="lead">Choose parameters</p>
-                        <form action="https://ehno8ok3r3.execute-api.eu-west-1.amazonaws.com/allocate_simulation" method="post" id="parametersForm">
+                        <!--<form action="https://ehno8ok3r3.execute-api.eu-west-1.amazonaws.com/allocate_simulation" method="post" id="parametersForm">-->
+                        <form id="parametersForm">
                             <div class="form-group">
                                 <label for="individuals">Amount of people</label>
                                 <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000">
@@ -55,12 +56,14 @@
                                 <label class="form-check-label" for="beacons">Beacons</label>
                                 <small id="beaconsHelp" class="form-text text-muted pb-3">Use beacons?</small>
                             </div>
-                            <p><a type="submit" id="test" class="btn btn-success" href="{% url 'form:simulation' %}">Start!</a></p>
+                            <!--<p><a type="submit" id="test" class="btn btn-success" href="{% url 'form:simulation' %}">Start!</a></p>-->
                         </form>
+                        <!--
                         <form id="test-form">
                            <label for="maxRounds">Maximum Amount of Numbers</label>
                             <input type="number" name="max_rounds" class="form-control" id="test-label" aria-describedby="roundsHelp" placeholder="10" min="0">
                         </form>
+                        -->
                         <button type="button" type = "submit"  id="test-button">Get statistics.</button>
                         <button type="button" type = "submit"  id="test-button2">Allocate city.</button>
                         <button type="button" type = "submit"  id="test-button3">Start simulation.</button>
@@ -94,7 +97,8 @@
 
                 }
         }
-    })*/
+    })
+    */
     </script>
     <script>
     /*
@@ -104,11 +108,13 @@
 	var form_data = $(this).serialize(); //Encode form elements for submission
 
 	$.post( post_url, form_data, function( response ) {});
-    });    */
+    });
+    */
     </script>
     <script>
 
-    /*$("#test-button").click(function(){
+    /*
+    $("#test-button").click(function(){
                 var dict = {individuals: 2000, incubation: 2, symptomatic: 4, immunity: 14, mortality: 10, beacons: "True",
             scale_city: 200, max_rounds: 1};
         var res = JSON.stringify(dict);
@@ -116,13 +122,11 @@
         $.post("https://ehno8ok3r3.execute-api.eu-west-1.amazonaws.com/allocate_simulation", res, function( response )
         {console.log(response)}).fail(function(err){console.log(err);});
 
-    }   );*/
+    });
+    */
 
-
-
-
-    $("#test-button3").click(function(){
-            var aux_data = {"command": "start"}
+    $("#test-button4").click(function(){
+            var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
@@ -130,12 +134,33 @@
                 data: JSON.stringify(aux_data),
                 dataType: "json",
                 contentType: "application/json"
-	        }).done(function(data){console.log(data)}).fail(function(xhr, error, error2){console.log(error);console.log(error2);})
+	        }).done(function(data){
+	            console.log(data)
+	        }).fail(function(xhr, error){
+	            console.log(error);
+	        })
+    });
+
+
+    $("#test-button3").click(function(){
+            var aux_data = {"command": "run"}
+
+            jQuery.ajax ({
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
+                type: "POST",
+                data: JSON.stringify(aux_data),
+                dataType: "json",
+                contentType: "application/json"
+	        }).done(function(data){
+	            console.log(data)
+	        }).fail(function(xhr, error){
+	            console.log(error);
+	        })
     });
 
 
     $("#test-button2").click(function(){
-            var aux_data = {"individuals": 2000,"incubation": 2,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "True","scale_city": 200,"max_rounds": 1}
+            var aux_data = {"individuals": 1000,"incubation": 1,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "False","scale_city": 200,"max_rounds": 50}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
@@ -143,7 +168,11 @@
                 data: JSON.stringify(aux_data),
                 dataType: "json",
                 contentType: "application/json"
-	        }).done(function(data){console.log(data)}).fail(function(xhr, error, error2){console.log(error);console.log(error2);})
+	        }).done(function(data){
+	            console.log(data)
+	        }).fail(function(xhr, error){
+	            console.log(error);
+	        })
     });
 
 

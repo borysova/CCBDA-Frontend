@@ -1,8 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
-
-
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
+from .forms import NameForm
 #from .models import Leads
 
 
@@ -21,11 +22,6 @@ def signup(request):
     status = leads.insert_lead(request.POST['name'], request.POST['email'], request.POST['previewAccess'])
     return HttpResponse('', status=status)
 """
-
-from django.http import HttpResponseRedirect
-from django.shortcuts import render
-
-from .forms import NameForm
 
 def get_name(request):
     # if this is a POST request we need to process the form data
