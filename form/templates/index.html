@@ -96,9 +96,18 @@
             var mortality_rate=document.getElementById("mortalityRate").value;
             var scale_city=document.getElementById("scaleCity").value;
             var max_rounds=document.getElementById("maxRounds").value;
-            var beacons=document.getElementById("individuals").value;
+            var beacons=""
 
-            var aux_data = {"individuals": individuals,"incubation": incubation_time,"symptomatic": symptomatic_seed,"immunity": immunity_rate,"mortality": mortality_rate, "beacons": "False","scale_city": scale_city,"max_rounds": max_rounds}
+            if ($('#beacons').is(":checked"))
+            {
+                beacons="True";
+            }else{
+
+                beacons="False";
+            }
+
+
+            var aux_data = {"individuals": individuals,"incubation": incubation_time,"symptomatic": symptomatic_seed,"immunity": immunity_rate,"mortality": mortality_rate, "beacons": beacons,"scale_city": scale_city,"max_rounds": max_rounds}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
