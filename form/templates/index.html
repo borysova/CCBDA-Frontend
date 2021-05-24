@@ -64,10 +64,10 @@
                             <input type="number" name="max_rounds" class="form-control" id="test-label" aria-describedby="roundsHelp" placeholder="10" min="0">
                         </form>
                         -->
-                        <button type="button" type = "submit"  id="test-button">Get statistics.</button>
+
                         <button type="button" type = "submit"  id="test-button2">Allocate city.</button>
-                        <button type="button" type = "submit"  id="test-button3">Start simulation.</button>
-                        <button type="button" type = "submit"  id="test-button4">Stop simulation.</button>
+                        <button type="button" type = "submit"  id="test-button3" disabled>Start simulation.</button>
+                        <!--<button type="button" type = "submit"  id="test-button4">Stop simulation.</button>-->
                     </div>
                 </div></div>
             {% else %}
@@ -153,6 +153,9 @@
                 contentType: "application/json"
 	        }).done(function(data){
 	            console.log(data)
+
+                window.location.href="{% url 'form:simulation' %}";
+
 	        }).fail(function(xhr, error){
 	            console.log(error);
 	        })
@@ -170,18 +173,16 @@
                 contentType: "application/json"
 	        }).done(function(data){
 	            console.log(data)
+
+                $("#test-button3").removeAttr("disabled");
+	            $(this).attr('disabled', true);
+
 	        }).fail(function(xhr, error){
 	            console.log(error);
 	        })
     });
 
 
-    $("#test-button").click(function(){
 
-        $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-            console.log(data)
-        });
-
-    });
     </script>
 {% endblock %}
