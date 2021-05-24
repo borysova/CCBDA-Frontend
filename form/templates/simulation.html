@@ -8,6 +8,13 @@
                     <div class="col-sm-9">
                         <p class="lead">Parameters</p>
                         <p><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
+
+                        <figure class="highcharts-figure">
+
+                            <div id="container"></div>
+
+	                    </figure>
+                        <button type="button" type = "submit"  id="test-button">Refresh graphics.</button>
                     </div>
                 </div>
             </div>
@@ -21,20 +28,97 @@
 
     <script>
 
-        const sleep = (milliseconds) => {
-            return new Promise(resolve => setTimeout(resolve, milliseconds))
+
+
+        $("#test-button").click(function(){
+
+            $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
+                console.log(data)
+
+
+            });
+        });
+
+
+
+
+        var round = 1;
+
+        var infected = [0];
+        var immune = [0];
+        var death = [0];
+
+
+        function print_chart(number_of_rounds) {
+
+            Highcharts.chart('container', {
+
+                title: {
+                    text: 'Simulation statistics by round'
+                },
+
+
+                yAxis: {
+                    title: {
+                        text: 'People'
+                    }
+                },
+
+                xAxis: {
+                    accessibility: {
+                        rangeDescription: 'Range: 0 to '+ number_of_rounds.toString()
+                    },
+                    title: {
+                        text: 'Round'
+                    }
+                },
+
+                legend: {
+                    layout: 'vertical',
+                    align: 'right',
+                    verticalAlign: 'middle'
+                },
+
+                plotOptions: {
+                    series: {
+                        label: {
+                            connectorAllowed: false
+                        },
+                        pointStart: 0
+                    }
+                },
+
+                series: [{
+                    name: 'Infected',
+                    data: infected
+                }, {
+                    name: 'Immune',
+                    data: immune
+                }, {
+                    name: 'Death',
+                    data: death
+                }],
+
+                responsive: {
+                    rules: [{
+                        condition: {
+                            maxWidth: 500
+                        },
+                        chartOptions: {
+                            legend: {
+                                layout: 'horizontal',
+                                align: 'center',
+                                verticalAlign: 'bottom'
+                            }
+                        }
+                    }]
+                }
+
+            });
+
         }
 
-        const task = async () => {
-            for (i = 0; i < 10; i++) {
-                await sleep(10000);
-                $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-                    console.log(data)
-                });
-            }
-        }
-
-        task();
+        print_chart(round);
 
 
 
