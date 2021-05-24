@@ -34,13 +34,13 @@
                                 <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100">
                                 <small id="mortHelp" class="form-text text-muted pb-3">0-100</small>
                             </div>
-                            <div class="form-group">
+                            <!--<div class="form-group">
                                 <label for="previewAccess">Interested in Preview Access?</label>
                                 <select class="form-control" name="previewAccess" id="previewAccess">
                                     <option>Yes</option>
                                     <option>No</option>
                                 </select>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label for="scaleCity">Scale City</label>
                                 <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0">
@@ -88,7 +88,17 @@
 
 
     $("#test-button").click(function(){
-            var aux_data = {"individuals": 1000,"incubation": 1,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "False","scale_city": 200,"max_rounds": 50}
+
+            var individuals= document.getElementById("individuals").value;
+            var incubation_time=document.getElementById("incubation").value;
+            var symptomatic_seed=document.getElementById("symptom").value;
+            var immunity_rate=document.getElementById("immun").value;
+            var mortality_rate=document.getElementById("mortalityRate").value;
+            var scale_city=document.getElementById("scaleCity").value;
+            var max_rounds=document.getElementById("maxRounds").value;
+            var beacons=document.getElementById("individuals").value;
+
+            var aux_data = {"individuals": individuals,"incubation": incubation_time,"symptomatic": symptomatic_seed,"immunity": immunity_rate,"mortality": mortality_rate, "beacons": "False","scale_city": scale_city,"max_rounds": max_rounds}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
@@ -97,7 +107,7 @@
                 dataType: "json",
                 contentType: "application/json"
 	        }).done(function(data){
-	            console.log(data)
+	            console.log(data);
 
                 $("#test-button2").removeAttr("disabled");
 	            $("#test-button").prop('disabled', 'disabled');

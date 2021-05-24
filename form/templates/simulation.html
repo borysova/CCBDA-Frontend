@@ -35,9 +35,9 @@
         $("#test-button").click(function(){
 
             $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-                console.log(data)
+                console.log(data);
 
-	            round= data.round
+	            round= data.round;
 
                 infected.push([round,data.stats.infected]);
 	            immune.push([round,data.stats.immune]);
@@ -60,7 +60,7 @@
                 dataType: "json",
                 contentType: "application/json"
 	        }).done(function(data){
-	            console.log(data)
+	            console.log(data);
 	        }).fail(function(xhr, error){
 	            console.log(error);
 	        })
