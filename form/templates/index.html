@@ -65,9 +65,9 @@
                         </form>
                         -->
 
-                        <button type="button" type = "submit"  id="test-button2">Allocate city.</button>
-                        <button type="button" type = "submit"  id="test-button3" disabled>Start simulation.</button>
-                        <!--<button type="button" type = "submit"  id="test-button4">Stop simulation.</button>-->
+                        <button type="button" type = "submit"  id="test-button">Allocate city.</button>
+                        <button type="button" type = "submit"  id="test-button2" disabled>Start simulation.</button>
+
                     </div>
                 </div></div>
             {% else %}
@@ -125,44 +125,8 @@
     });
     */
 
-    $("#test-button4").click(function(){
-            var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
 
-            jQuery.ajax ({
-                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
-                type: "POST",
-                data: JSON.stringify(aux_data),
-                dataType: "json",
-                contentType: "application/json"
-	        }).done(function(data){
-	            console.log(data)
-	        }).fail(function(xhr, error){
-	            console.log(error);
-	        })
-    });
-
-
-    $("#test-button3").click(function(){
-            var aux_data = {"command": "run"}
-
-            jQuery.ajax ({
-                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
-                type: "POST",
-                data: JSON.stringify(aux_data),
-                dataType: "json",
-                contentType: "application/json"
-	        }).done(function(data){
-	            console.log(data)
-
-                window.location.href="{% url 'form:simulation' %}";
-
-	        }).fail(function(xhr, error){
-	            console.log(error);
-	        })
-    });
-
-
-    $("#test-button2").click(function(){
+    $("#test-button").click(function(){
             var aux_data = {"individuals": 1000,"incubation": 1,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "False","scale_city": 200,"max_rounds": 50}
 
             jQuery.ajax ({
@@ -182,6 +146,24 @@
 	        })
     });
 
+    $("#test-button2").click(function(){
+            var aux_data = {"command": "run"}
+
+            jQuery.ajax ({
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
+                type: "POST",
+                data: JSON.stringify(aux_data),
+                dataType: "json",
+                contentType: "application/json"
+	        }).done(function(data){
+	            console.log(data)
+
+                window.location.href="{% url 'form:simulation' %}";
+
+	        }).fail(function(xhr, error){
+	            console.log(error);
+	        })
+    });
 
 
     </script>

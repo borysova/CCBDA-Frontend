@@ -15,6 +15,7 @@
 
 	                    </figure>
                         <button type="button" type = "submit"  id="test-button">Refresh graphics.</button>
+                        <button type="button" type = "submit"  id="test-button2">Stop simulation.</button>
                     </div>
                 </div>
             </div>
@@ -28,12 +29,36 @@
 
     <script>
 
+        $("#test-button2").click(function(){
+            var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
+
+            jQuery.ajax ({
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
+                type: "POST",
+                data: JSON.stringify(aux_data),
+                dataType: "json",
+                contentType: "application/json"
+	        }).done(function(data){
+	            console.log(data)
+	        }).fail(function(xhr, error){
+	            console.log(error);
+	        })
+        });
+
 
 
         $("#test-button").click(function(){
 
             $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
                 console.log(data)
+
+	            round= round + Math.floor(Math.random() * 10)
+
+                infected.push([round,Math.floor(Math.random() * 100000)]);
+	            immune.push([round,Math.floor(Math.random() * 100000)]);
+	            death.push([round,Math.floor(Math.random() * 100000)]);
+
+	            print_chart(round);
 
 
             });
@@ -42,11 +67,11 @@
 
 
 
-        var round = 1;
+        var round = 0;
 
-        var infected = [0];
-        var immune = [0];
-        var death = [0];
+        var infected = [[0,0]];
+        var immune = [[0,0]];
+        var death = [[0,0]];
 
 
         function print_chart(number_of_rounds) {
