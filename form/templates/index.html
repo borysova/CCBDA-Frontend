@@ -61,9 +61,10 @@
                            <label for="maxRounds">Maximum Amount of Numbers</label>
                             <input type="number" name="max_rounds" class="form-control" id="test-label" aria-describedby="roundsHelp" placeholder="10" min="0">
                         </form>
-                        <button type="button" type = "submit"  id="test-button">Get stats.</button>
+                        <button type="button" type = "submit"  id="test-button">Get statistics.</button>
                         <button type="button" type = "submit"  id="test-button2">Allocate city.</button>
-                        <button type="button" type = "submit"  id="test-button3">Run simulation.</button>
+                        <button type="button" type = "submit"  id="test-button3">Start simulation.</button>
+                        <button type="button" type = "submit"  id="test-button4">Stop simulation.</button>
                     </div>
                 </div></div>
             {% else %}
@@ -117,11 +118,14 @@
 
     }   );*/
 
+
+
+
     $("#test-button3").click(function(){
-            var aux_data = {"individuals": 2000,"incubation": 2,"symptomatic": 4,"immunity": 14,"mortality": 10, "beacons": "True","scale_city": 200,"max_rounds": 1}
+            var aux_data = {"command": "start"}
 
             jQuery.ajax ({
-                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
+                url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
                 type: "POST",
                 data: JSON.stringify(aux_data),
                 dataType: "json",
