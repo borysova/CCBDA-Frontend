@@ -57,6 +57,7 @@
                                 <small id="beaconsHelp" class="form-text text-muted pb-3">Use beacons?</small>
                             </div>
                             {% csrf_token %}<!--Necessary tag...-->
+                            <input type="hidden" name="id_simulation">
                         </form>
 
 
@@ -104,8 +105,6 @@
 	        }).fail(function(xhr, error){
 	            console.log(error);
 
-	            $("#test-button2").removeAttr("disabled");
-	            $("#test-button").prop('disabled', 'disabled');
 	        })
     });
 
@@ -127,8 +126,6 @@
 	        }).fail(function(xhr, error){
 	            console.log(error);
 
-	            //window.location.href="{% url 'form:simulation' %}";
-                document.getElementById("parametersForm").submit();
 	        })
     });
 
