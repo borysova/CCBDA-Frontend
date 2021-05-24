@@ -29,6 +29,27 @@
 
     <script>
 
+
+
+
+        $("#test-button").click(function(){
+
+            $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
+                console.log(data)
+
+	            round= data.round
+
+                infected.push([round,data.stats.infected]);
+	            immune.push([round,data.stats.immune]);
+	            dead.push([round,data.stats.dead]);
+
+	            print_chart(round);
+
+
+            });
+        });
+
+
         $("#test-button2").click(function(){
             var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
 
@@ -46,32 +67,9 @@
         });
 
 
-
-        $("#test-button").click(function(){
-
-            $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-                console.log(data)
-
-	            round= round + Math.floor(Math.random() * 10)
-
-                infected.push([round,Math.floor(Math.random() * 100000)]);
-	            immune.push([round,Math.floor(Math.random() * 100000)]);
-	            death.push([round,Math.floor(Math.random() * 100000)]);
-
-	            print_chart(round);
-
-
-            });
-        });
-
-
-
-
-        var round = 0;
-
         var infected = [[0,0]];
         var immune = [[0,0]];
-        var death = [[0,0]];
+        var dead = [[0,0]];
 
 
         function print_chart(number_of_rounds) {
@@ -120,8 +118,8 @@
                     name: 'Immune',
                     data: immune
                 }, {
-                    name: 'Death',
-                    data: death
+                    name: 'Dead',
+                    data: dead
                 }],
 
                 responsive: {
@@ -143,7 +141,7 @@
 
         }
 
-        print_chart(round);
+        print_chart(0);
 
 
 
