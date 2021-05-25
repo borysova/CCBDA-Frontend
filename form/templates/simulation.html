@@ -1,21 +1,24 @@
 {% extends "generic.html" %}
 {% block contents %}
     <div class="row justify-content-md-center">
-        <div class="col-sm-8">
-            <div class="jumbotron" id="jumbohome">
+        <div class="col-sm-12">
+            <div class="jumbotron">
                 <h1>Virus Spread Simulation</h1>
+                <p class="lead">Parameters</p>
+            </div>
+            <div class="jumbotron" id="jumbohome">
                 <div class="row">
-                    <div class="col-sm-9">
-                        <p class="lead">Parameters</p>
-                        <p><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
+                    <div class="col-sm-12">
+
 
                         <figure class="highcharts-figure">
 
                             <div id="container"></div>
 
 	                    </figure>
-                        <button type="button" type = "submit"  id="test-button">Refresh graphics.</button>
-                        <button type="button" type = "submit"  id="test-button2">Stop simulation.</button>
+                        <p class="pt-3"><a class="btn btn-success d-flex justify-content-center" href="{% url 'form:home' %}">Back to the homepage</a></p>
+                        <!--<button type="button" type = "submit"  id="test-button">Refresh graphics.</button>-->
+                        <!--<button type="button" type = "submit"  id="test-button2">Stop simulation.</button>-->
                     </div>
                 </div>
             </div>
@@ -46,7 +49,7 @@
 
             });
             }
-            setInterval(refresh, 5000 );
+            setInterval(refresh, 10000);
         });
 
 

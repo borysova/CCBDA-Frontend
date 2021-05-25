@@ -3,7 +3,13 @@
     <div class="row justify-content-md-center">
         <div class="col-sm-8">
             {% if var %}
-                <h1>Virus Spread Simulation</h1>
+                <button onclick="showInfo()" class="btn btn-success">Project description</button>
+                <div id="info" style="display: none;" class="pt-4">
+                    <div>
+                        <h1>Info about the project and parameters</h1>
+                    </div>
+                </div>
+                <h1 class="pt-4">Virus Spread Simulation</h1>
                 <div class="row">
                     <div class="col-sm-9">
                         <p class="lead">Choose parameters</p>
@@ -11,58 +17,51 @@
 
                             <div class="form-group">
                                 <label for="individuals">Amount of people</label>
-                                <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000">
+                                <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000" required>
                                 <small id="indivHelp" class="form-text text-muted pb-3">Recommended up to 10000 people</small>
                             </div>
                             <div class="form-group">
                                 <label for="incubation">Incubation Time</label>
-                                <input type="number" name="incubation" class="form-control" id="incubation" aria-describedby="incubHelp" min="0" placeholder="1">
+                                <input type="number" name="incubation" class="form-control" id="incubation" aria-describedby="incubHelp" min="0" placeholder="1" required>
                                 <small id="incubHelp" class="form-text text-muted pb-3">Unlimited</small>
                             </div>
                             <div class="form-group">
                                 <label for="symptom">Symptomatic Seed</label>
-                                <input type="number" name="symptomatic" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="10" min="0" max="90">
+                                <input type="number" name="symptomatic" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="10" min="0" max="90" required>
                                 <small id="symptomHelp" class="form-text text-muted pb-3">0-90</small>
                             </div>
                             <div class="form-group">
                                 <label for="symptom">Immunity Rate</label>
-                                <input type="number" name="immunity" class="form-control" id="immun" aria-describedby="immunHelp" placeholder="10" min="0" max="90">
+                                <input type="number" name="immunity" class="form-control" id="immun" aria-describedby="immunHelp" placeholder="10" min="0" max="90" required>
                                 <small id="immunHelp" class="form-text text-muted pb-3">0-90</small>
                             </div>
                             <div class="form-group">
                                 <label for="mortalityRate">Mortality Rate</label>
-                                <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100">
+                                <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100" required>
                                 <small id="mortHelp" class="form-text text-muted pb-3">0-100</small>
                             </div>
-                            <!--<div class="form-group">
-                                <label for="previewAccess">Interested in Preview Access?</label>
-                                <select class="form-control" name="previewAccess" id="previewAccess">
-                                    <option>Yes</option>
-                                    <option>No</option>
-                                </select>
-                            </div>-->
                             <div class="form-group">
                                 <label for="scaleCity">Scale City</label>
-                                <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0">
-                                <small id="scaleHelp" class="form-text text-muted pb-3">>0</small>
+                                <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0" required>
+                                <small id="scaleHelp" class="form-text text-muted pb-2">>0</small>
                             </div>
                             <div class="form-group">
-                                <label for="maxRounds">Maximum Amount of Numbers</label>
-                                <input type="number" name="max_rounds" class="form-control" id="maxRounds" aria-describedby="roundsHelp" placeholder="10" min="0">
-                                <small id="roundsHelp" class="form-text text-muted pb-3">>0</small>
+                                <label for="maxRounds">Maximum Amount of Rounds</label>
+                                <input type="number" name="max_rounds" class="form-control" id="maxRounds" aria-describedby="roundsHelp" placeholder="10" min="0" required>
+                                <small id="roundsHelp" class="form-text text-muted pb-2">>0</small>
                             </div>
                             <div class="form-check">
-                                <input type="checkbox" name="beacons" class="form-check-input" id="beacons" aria-describedby="beaconsHelp">
+                                <input type="checkbox" name="beacons" class="form-check-input" id="beacons" aria-describedby="beaconsHelp" required>
                                 <label class="form-check-label" for="beacons">Beacons</label>
-                                <small id="beaconsHelp" class="form-text text-muted pb-3">Use beacons?</small>
+                                <small id="beaconsHelp" class="form-text text-muted pb-4">Use beacons?</small>
                             </div>
                             {% csrf_token %}<!--Necessary tag...-->
                             <input type="hidden" name="id_simulation" id="id_simulation">
                         </form>
 
 
-                        <button type="button" type = "submit"  id="test-button">Allocate city.</button>
-                        <button type="button" type = "submit"  id="test-button2" disabled>Start simulation.</button>
+                        <button type="button" type = "submit"  id="test-button" class="btn btn-success mr-1">Allocate city</button>
+                        <button type="button" type = "submit"  id="test-button2"  class="btn btn-success" disabled>Start simulation</button>
 
                     </div>
                 </div></div>
@@ -82,19 +81,29 @@
 {% endblock %}
 
 {% block scripts %}
+    <script>
+    function showInfo() {
+        var x = document.getElementById("info");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+    }
+    }
+    </script>
 
 
     <script>
 
     $("#test-button").click(function(){
 
-            var individuals= document.getElementById("individuals").value;
-            var incubation_time=document.getElementById("incubation").value;
-            var symptomatic_seed=document.getElementById("symptom").value;
-            var immunity_rate=document.getElementById("immun").value;
-            var mortality_rate=document.getElementById("mortalityRate").value;
-            var scale_city=document.getElementById("scaleCity").value;
-            var max_rounds=document.getElementById("maxRounds").value;
+            var individuals=parseInt(document.getElementById("individuals").value);
+            var incubation_time=parseInt(document.getElementById("incubation").value);
+            var symptomatic_seed=parseInt(document.getElementById("symptom").value);
+            var immunity_rate=parseInt(document.getElementById("immun").value);
+            var mortality_rate=parseInt(document.getElementById("mortalityRate").value);
+            var scale_city=parseInt(document.getElementById("scaleCity").value);
+            var max_rounds=parseInt(document.getElementById("maxRounds").value);
             var beacons="";
 
             if ($('#beacons').is(":checked"))
