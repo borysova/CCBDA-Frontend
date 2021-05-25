@@ -30,6 +30,28 @@
     <script>
 
 
+        $(function() {
+            function refresh(){
+                $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
+                console.log(data);
+
+	            round= data.round;
+
+                infected.push([round,data.stats.infected]);
+	            immune.push([round,data.stats.immune]);
+	            dead.push([round,data.stats.dead]);
+
+	            print_chart(round);
+
+
+            });
+            }
+            setInterval(refresh, 5000 );
+        });
+
+
+
+        /*
 
 
         $("#test-button").click(function(){
