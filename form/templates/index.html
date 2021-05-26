@@ -2,58 +2,101 @@
 {% block contents %}
     <div class="row justify-content-md-center">
         <div class="col-sm-8">
-            {% if var %}
-                <button onclick="showInfo()" class="btn btn-success">Project description</button>
-                <div id="info" style="display: none;" class="pt-4">
-                    <div>
-                        <h1>Info about the project and parameters</h1>
-                    </div>
+            <button onclick="showInfo()" class="btn btn-success">Project description</button>
+            <div id="info" style="display: none;" class="pt-4">
+                <div>
+                    <p class="display-4"><strong>About</strong></p>
+                    <p class="h4 pt-3"><strong>Cloud Computing and Big Data Analytics Final Project</strong></p>
+                    <p class="h4"><strong>UPC (BarcelonaTech), Summer Semester 2021</strong></p>
+                    <p class="h4"><strong>Group 3: Pol González Pacheco, Marc Catrisse Pérez, Francesc Roy Campderros, Mariia Borysova</strong></p>
+                    <p class="pt-3">In this project we created a model to predict the behaviour of a virus spreading among people.
+                        This model simulates routines of people based on their characteristics,  different infection stages and other
+                        parameters that determine how the virus spreads. Model includes a city with different types of locations (work, home, recreational locations) and city residents
+                        who each round move around the city following their daily agenda. </p>
+                    <p>On the top of this we provide a possibility to simulate a tracking system. It allows individuals to discover that they have been in contact with the infected.
+                        This system is based on the exchange of beacons between people. Once a person is infected, individuals that were in contact with him/her in the last 14 days are notified.</p>
+                    <p class="pb-3">Thus, it is possible to evaluate if beacons can slow down the spread of the virus.</p>
                 </div>
-                <h1 class="pt-4">Virus Spread Simulation</h1>
+            </div>
+            <button onclick="showParamInfo()" class="btn btn-success">Parameters description</button>
+            <div id="paramInfo" style="display: none;" class="pt-4">
+                <div>
+                    <p class="display-4"><strong>Parameters</strong></p>
+                    <ul class="list-group">
+                        <li class="list-group-item"><p><strong>Number of people</strong></p>
+                            Defines number of individuals who are involved in the simulation.
+                            All of them belong to one of the following groups: workers, students and elderly. Agenda differs
+                            for the members of each group and determines the person's frequency and target of movement (work, home, recreational locations) during simulation.
+                            Individuals also have different infection status. They can be healthy, in the incubation phase, asymptomatic infection phase, symptomatic infection phase, died or immune.
+                        </li>
+                        <li class="list-group-item"><p><strong>Incubation Time</strong></p>
+                            Number of rounds during which the incubation period lasts.
+                        </li>
+                        <li class="list-group-item"><p><strong>Symptomatic Seed</strong></p>
+                            ???
+                        </li>
+                        <li class="list-group-item"><p><strong>Immunity Rate</strong></p>
+                            The likelihood that a person will not contract the virus after contact with an infected. ???
+                        </li>
+                        <li class="list-group-item"><p><strong>Mortality Rate</strong></p>
+                            The likelihood that a person will die after being infected with a virus.
+                        </li>
+                        <li class="list-group-item"><p><strong>Scale City</strong></p>
+                            ???
+                        </li>
+                        <li class="list-group-item"><p><strong>Maximum Number of Rounds</strong></p>
+                            Number of rounds in the simulation. People are moved from the one place to another after end of each round.
+                        </li>
+                        <li class="list-group-item"><p><strong>Beacons</strong></p>
+                            Identifies if beacons will be used to notify people that were in contact with an infected person.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {% if not simRunning %}
                 <div class="row">
                     <div class="col-sm-9">
-                        <p class="lead">Choose parameters</p>
+                        <p class="lead pt-4"><strong>Choose parameters</strong></p>
                         <form action="{% url 'form:simulation' %}" method="post" id="parametersForm">
 
                             <div class="form-group">
-                                <label for="individuals">Amount of people</label>
+                                <label for="individuals">Number of people</label>
                                 <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000" required>
                                 <small id="indivHelp" class="form-text text-muted pb-3">Recommended up to 10000 people</small>
                             </div>
                             <div class="form-group">
                                 <label for="incubation">Incubation Time</label>
                                 <input type="number" name="incubation" class="form-control" id="incubation" aria-describedby="incubHelp" min="0" placeholder="1" required>
-                                <small id="incubHelp" class="form-text text-muted pb-3">Unlimited</small>
+                                <small id="incubHelp" class="form-text text-muted pb-3">Positive number</small>
                             </div>
                             <div class="form-group">
                                 <label for="symptom">Symptomatic Seed</label>
                                 <input type="number" name="symptomatic" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="10" min="0" max="90" required>
-                                <small id="symptomHelp" class="form-text text-muted pb-3">0-90</small>
+                                <small id="symptomHelp" class="form-text text-muted pb-3">0 - 90</small>
                             </div>
                             <div class="form-group">
                                 <label for="symptom">Immunity Rate</label>
                                 <input type="number" name="immunity" class="form-control" id="immun" aria-describedby="immunHelp" placeholder="10" min="0" max="90" required>
-                                <small id="immunHelp" class="form-text text-muted pb-3">0-90</small>
+                                <small id="immunHelp" class="form-text text-muted pb-3">0 - 90</small>
                             </div>
                             <div class="form-group">
                                 <label for="mortalityRate">Mortality Rate</label>
                                 <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100" required>
-                                <small id="mortHelp" class="form-text text-muted pb-3">0-100</small>
+                                <small id="mortHelp" class="form-text text-muted pb-3">0 - 100</small>
                             </div>
                             <div class="form-group">
                                 <label for="scaleCity">Scale City</label>
                                 <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0" required>
-                                <small id="scaleHelp" class="form-text text-muted pb-2">>0</small>
+                                <small id="scaleHelp" class="form-text text-muted pb-2">Positive number</small>
                             </div>
                             <div class="form-group">
-                                <label for="maxRounds">Maximum Amount of Rounds</label>
+                                <label for="maxRounds">Maximum Number of Rounds</label>
                                 <input type="number" name="max_rounds" class="form-control" id="maxRounds" aria-describedby="roundsHelp" placeholder="10" min="0" required>
-                                <small id="roundsHelp" class="form-text text-muted pb-2">>0</small>
+                                <small id="roundsHelp" class="form-text text-muted pb-2">Positive number</small>
                             </div>
                             <div class="form-check">
                                 <input type="checkbox" name="beacons" class="form-check-input" id="beacons" aria-describedby="beaconsHelp" required>
-                                <label class="form-check-label" for="beacons">Beacons</label>
-                                <small id="beaconsHelp" class="form-text text-muted pb-4">Use beacons?</small>
+                                <label class="form-check-label pb-4" for="beacons">Beacons</label>
                             </div>
                             {% csrf_token %}<!--Necessary tag...-->
                             <input type="hidden" name="id_simulation" id="id_simulation">
@@ -84,6 +127,17 @@
     <script>
     function showInfo() {
         var x = document.getElementById("info");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+    }
+    }
+    </script>
+
+    <script>
+    function showParamInfo() {
+        var x = document.getElementById("paramInfo");
         if (x.style.display === "none") {
             x.style.display = "block";
         } else {
@@ -135,6 +189,18 @@
 	        })
     });
 
+/*
+
+    $("#test-button").click(function(){
+        $.ajax({
+        type: "POST",
+        url: '{{ 'set-sim-var/'}}',
+        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+              text: "True"},
+    });
+    });*/
+
+
     $("#test-button2").click(function(){
             var aux_data = {"command": "run"}
 
@@ -146,6 +212,16 @@
                 contentType: "application/json"
 	        }).done(function(data){
 	            console.log(data);
+	                    $.ajax({
+                        type: "POST",
+                        url: '{{ 'set-sim-var/'}}',
+                        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+                        text: "True"},
+                });
+	            $.ajax({
+                type: 'POST',
+                url: {% url 'form:simulation' %},
+                );
 
                 //window.location.href="{% url 'form:simulation' %}";
                 document.getElementById("parametersForm").submit();
