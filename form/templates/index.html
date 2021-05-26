@@ -103,8 +103,8 @@
                         </form>
 
 
-                        <button type="button" type = "submit"  id="test-button" class="btn btn-success mr-1">Allocate city</button>
-                        <button type="button" type = "submit"  id="test-button2"  class="btn btn-success" disabled>Start simulation</button>
+                        <button type="button" type = "submit"  id="allocate" class="btn btn-success mr-1">Allocate city</button>
+                        <button type="button" type = "submit"  id="start"  class="btn btn-success" disabled>Start simulation</button>
 
                     </div>
                 </div></div>
@@ -149,7 +149,7 @@
 
     <script>
 
-    $("#test-button").click(function(){
+    $("#allocate").click(function(){
 
             var individuals=parseInt(document.getElementById("individuals").value);
             var incubation_time=parseInt(document.getElementById("incubation").value);
@@ -180,8 +180,8 @@
 	        }).done(function(data){
 	            console.log(data);
 
-                $("#test-button2").removeAttr("disabled");
-	            $("#test-button").prop('disabled', 'disabled');
+                $("#start").removeAttr("disabled");
+	            $("#allocate").prop('disabled', 'disabled');
 
 	        }).fail(function(xhr, error){
 	            console.log(error);
@@ -201,7 +201,7 @@
     });*/
 
 
-    $("#test-button2").click(function(){
+    $("#start").click(function(){
             var aux_data = {"command": "run"}
 
             jQuery.ajax ({

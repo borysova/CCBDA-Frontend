@@ -1,5 +1,6 @@
-#newstartup {
-    background: url('startup-bg.png') no-repeat center center fixed;
+#jumbohome {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('virus.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -7,13 +8,15 @@
     border-radius: 0;
 }
 
-#newstartup h1 {
+#jumbohome h1 {
     color: white;
+    font-weight: 400;
 }
 
-#jumbohome {
-    background: url('virus.jpg') no-repeat;
-    background-position: right;
-    background-size: 20%;
-    background-color: linen;
+#jumbograph {
+    background-color:rgb(230, 249, 255);
+}
+
+#jumboparameters {
+    background-color:rgb(230, 249, 255);
 }

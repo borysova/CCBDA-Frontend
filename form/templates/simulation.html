@@ -2,21 +2,20 @@
 {% block contents %}
     <div class="row justify-content-md-center">
         <div class="col-sm-12">
-            <div class="jumbotron">
+            <div class="jumbotron" id="jumboparameters">
                 <p class="lead">Parameters of current simulation</p>
             </div>
-            <div class="jumbotron" id="jumbohome">
+            <div class="jumbotron" id="jumbograph">
                 <div class="row">
                     <div class="col-sm-12">
-
 
                         <figure class="highcharts-figure">
 
                             <div id="container"></div>
 
 	                    </figure>
-                        <p class="pt-3"><a class="btn btn-success d-flex justify-content-center" href="{% url 'form:home' %}">Back to the homepage</a></p>
-                        <!--<button type="button" type = "submit"  id="test-button">Refresh graphics.</button>-->
+                        <p class="pt-3 d-flex justify-content-center"><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
+                        <div align="center"><button id="stop" type="submit" class="pt-1 btn btn-success">Stop simulation</button></div>
                         <!--<button type="button" type = "submit"  id="test-button2">Stop simulation.</button>-->
                     </div>
                 </div>
@@ -71,12 +70,10 @@
 
 
             });
-        });
+        }); */
 
 
-        /* Not implemented yet...
-
-        $("#test-button2").click(function(){
+        $("#stop").click(function(){
             var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
 
             jQuery.ajax ({
@@ -91,7 +88,7 @@
 	            console.log(error);
 	        })
         });
-        */
+
 
 
         var infected = [[0,0]];
