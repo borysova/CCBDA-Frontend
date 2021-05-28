@@ -29,6 +29,11 @@ def simulation_view(request):
     scale_city = request.POST['scale_city']
     max_rounds = request.POST['max_rounds']
     id_simulation = request.POST['id_simulation']
+    beacons_list = request.POST.getlist('beacons')
+
+    beacons="No"
+    if len(beacons_list)!=0:
+        beacons="Yes"
 
     parameters = {
         "individuals": individuals,
@@ -39,6 +44,7 @@ def simulation_view(request):
         "scale_city": scale_city,
         "max_rounds": max_rounds,
         "id_simulation": id_simulation,
+        "beacons": beacons,
     }
 
 
