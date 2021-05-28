@@ -2,7 +2,7 @@
 {% block contents %}
     <div class="row justify-content-md-center">
         <div class="col-sm-8">
-            <button onclick="showInfo()" class="btn btn-success">Project description</button>
+            <button onclick="showInfo()" class="btn btn-success mr-1">Project description</button>
             <div id="info" style="display: none;" class="pt-4">
                 <div>
                     <p class="display-4"><strong>About</strong></p>
@@ -53,105 +53,91 @@
                     </ul>
                 </div>
             </div>
-            {% if not simRunning %}
-                <div class="row">
-                    <div class="col-sm-9">
-                        <p class="lead pt-4"><strong>Choose parameters</strong></p>
-                        <form action="{% url 'form:simulation' %}" method="post" id="parametersForm">
-
-                            <div class="form-group">
-                                <label for="individuals">Number of people</label>
-                                <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000" required>
-                                <small id="indivHelp" class="form-text text-muted pb-3">Recommended up to 10000 people</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="incubation">Incubation Time</label>
-                                <input type="number" name="incubation" class="form-control" id="incubation" aria-describedby="incubHelp" min="0" placeholder="1" required>
-                                <small id="incubHelp" class="form-text text-muted pb-3">Positive number</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="symptom">Symptomatic Seed</label>
-                                <input type="number" name="symptomatic" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="10" min="0" max="90" required>
-                                <small id="symptomHelp" class="form-text text-muted pb-3">0 - 90</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="symptom">Immunity Rate</label>
-                                <input type="number" name="immunity" class="form-control" id="immun" aria-describedby="immunHelp" placeholder="10" min="0" max="90" required>
-                                <small id="immunHelp" class="form-text text-muted pb-3">0 - 90</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="mortalityRate">Mortality Rate</label>
-                                <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100" required>
-                                <small id="mortHelp" class="form-text text-muted pb-3">0 - 100</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="scaleCity">Scale City</label>
-                                <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0" required>
-                                <small id="scaleHelp" class="form-text text-muted pb-2">Positive number</small>
-                            </div>
-                            <div class="form-group">
-                                <label for="maxRounds">Maximum Number of Rounds</label>
-                                <input type="number" name="max_rounds" class="form-control" id="maxRounds" aria-describedby="roundsHelp" placeholder="10" min="0" required>
-                                <small id="roundsHelp" class="form-text text-muted pb-2">Positive number</small>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" name="beacons" class="form-check-input" id="beacons" aria-describedby="beaconsHelp" value="1" required>
-                                <label class="form-check-label pb-4" for="beacons">Beacons</label>
-                            </div>
-                            {% csrf_token %}<!--Necessary tag...-->
-                            <input type="hidden" name="id_simulation" id="id_simulation" value="hola">
-                        </form>
-
-
-                        <button type="button" type = "submit"  id="allocate" class="btn btn-success mr-1">Allocate city</button>
-                        <button type="button" type = "submit"  id="start"  class="btn btn-success" disabled>Start simulation</button>
-                        <button type="button" type = "submit"  id="go_to_simulation"  class="btn btn-success" disabled>Go to simulation results</button>
-
-
-                    </div>
-                </div></div>
-            {% else %}
-                <div class="jumbotron" id="simstart">
-                    <h1>Virus Spread Simulation</h1>
-                    <div class="row">
-                        <div class="col-sm-9">
-                            <p>Another simulation has already been started :(</p>
-                            <p><a class="btn btn-success" href="{% url 'form:simulation' %}">Go to the simulation</a></p>
+            <div class="row">
+                <div class="col-sm-9">
+                    <p class="lead pt-4"><strong>Choose parameters</strong></p>
+                    <form action="{% url 'form:simulation' %}" method="post" id="parametersForm">
+                        <div class="form-group">
+                            <label for="individuals">Number of people</label>
+                            <input type="number" name="individuals" class="form-control" id="individuals" aria-describedby="indivHelp" min="0" placeholder="1000" required>
+                            <small id="indivHelp" class="form-text text-muted pb-3">Recommended up to 10000 people</small>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="incubation">Incubation Time</label>
+                            <input type="number" name="incubation" class="form-control" id="incubation" aria-describedby="incubHelp" min="0" placeholder="1" required>
+                            <small id="incubHelp" class="form-text text-muted pb-3">Positive number</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="symptom">Symptomatic Seed</label>
+                            <input type="number" name="symptomatic" class="form-control" id="symptom" aria-describedby="symptomHelp" placeholder="10" min="0" max="90" required>
+                            <small id="symptomHelp" class="form-text text-muted pb-3">0 - 90</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="symptom">Immunity Rate</label>
+                            <input type="number" name="immunity" class="form-control" id="immun" aria-describedby="immunHelp" placeholder="10" min="0" max="90" required>
+                            <small id="immunHelp" class="form-text text-muted pb-3">0 - 90</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="mortalityRate">Mortality Rate</label>
+                            <input type="number" name="mortality" class="form-control" id="mortalityRate" aria-describedby="mortHelp" placeholder="10" min="0" max="100" required>
+                            <small id="mortHelp" class="form-text text-muted pb-3">0 - 100</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="scaleCity">Scale City</label>
+                            <input type="number" name="scale_city" class="form-control" id="scaleCity" aria-describedby="scaleHelp" placeholder="10" min="0" required>
+                            <small id="scaleHelp" class="form-text text-muted pb-2">Positive number</small>
+                        </div>
+                        <div class="form-group">
+                            <label for="maxRounds">Maximum Number of Rounds</label>
+                            <input type="number" name="max_rounds" class="form-control" id="maxRounds" aria-describedby="roundsHelp" placeholder="10" min="0" required>
+                            <small id="roundsHelp" class="form-text text-muted pb-2">Positive number</small>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" name="beacons" class="form-check-input" id="beacons" aria-describedby="beaconsHelp" value="1" required>
+                            <label class="form-check-label pb-4" for="beacons">Beacons</label>
+                        </div>
+                        {% csrf_token %}<!--Necessary tag...-->
+                        <input type="hidden" name="id_simulation" id="id_simulation" value="hola">
+                    </form>
+                    <button type="button" type = "submit"  id="allocate" class="btn btn-success mr-1">Allocate city</button>
+                    <button type="button" type = "submit"  id="start"  class="btn btn-success mr-1" disabled>Start simulation</button>
+                    <button type="button" type = "submit"  id="go_to_simulation"  class="btn btn-success" disabled>Go to current simulation</button>
                 </div>
-            {% endif %}
+            </div>
         </div>
     </div>
 {% endblock %}
 
 {% block scripts %}
+
     <script>
-    function showInfo() {
-        var x = document.getElementById("info");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-    }
-    }
+        // show project description
+        function showInfo() {
+            var x = document.getElementById("info");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
+        }
     </script>
 
     <script>
-    function showParamInfo() {
-        var x = document.getElementById("paramInfo");
-        if (x.style.display === "none") {
-            x.style.display = "block";
-        } else {
-            x.style.display = "none";
-    }
-    }
+        // show parameters description
+        function showParamInfo() {
+            var x = document.getElementById("paramInfo");
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+               x.style.display = "none";
+            }
+        }
     </script>
 
-
     <script>
-
-    $("#allocate").click(function(){
+        // sends POST to API to allocate a city. on success - disable "allocate city", enable "start simulation".
+        // fail - enable "go to the simulation"
+        $("#allocate").click(function(){
 
             var individuals=parseInt(document.getElementById("individuals").value);
             var incubation_time=parseInt(document.getElementById("incubation").value);
@@ -165,13 +151,13 @@
             if ($('#beacons').is(":checked"))
             {
                 beacons="True";
-            }else{
-
+            } else {
                 beacons="False";
             }
 
-
-            var aux_data = {"individuals": individuals,"incubation": incubation_time,"symptomatic": symptomatic_seed,"immunity": immunity_rate,"mortality": mortality_rate, "beacons": beacons,"scale_city": scale_city,"max_rounds": max_rounds}
+            var aux_data = {"individuals": individuals,"incubation": incubation_time,"symptomatic":
+                symptomatic_seed,"immunity": immunity_rate,"mortality": mortality_rate, "beacons": beacons,
+                "scale_city": scale_city,"max_rounds": max_rounds}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/allocate-city",
@@ -181,27 +167,27 @@
                 contentType: "application/json"
 	        }).done(function(data){
 	            console.log(data);
-
                 $("#start").removeAttr("disabled");
 	            $("#allocate").prop('disabled', 'disabled');
-
 	        }).fail(function(xhr, error){
 	            console.log(error);
 	            alert("A simulation is already going on.");
 	            $("#go_to_simulation").removeAttr("disabled");
-
-
-
 	        })
-    });
+        });
+    </script>
 
+    <script>
+        // redirects to the ongoing simulation
+        $("#go_to_simulation").click(function(){
+            window.location.href = {% url 'form:simulation' %};
+        });
+    </script>
 
-    $("#go_to_simulation").click(function(){
-        window.location.href = {% url 'form:simulation' %};
-    });
+    <script>
+        // sends POST to start a simulation. on success - redirects to the simulation
+        $("#start").click(function(){
 
-
-    $("#start").click(function(){
             var aux_data = {"command": "run"}
 
             jQuery.ajax ({
@@ -214,7 +200,7 @@
 
 	            console.log(data);
 
-	            #$("#id_simulation").val(data.)
+	            $("#id_simulation").val(data.)
 
                 //$.ajax({
                 //type: "POST",
@@ -232,13 +218,7 @@
 
 	        }).fail(function(xhr, error){
 	            console.log(error);
-
-
-
 	        })
-    });
-
-
-
+        });
     </script>
 {% endblock %}

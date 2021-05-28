@@ -16,17 +16,11 @@
             <div class="jumbotron" id="jumbograph">
                 <div class="row">
                     <div class="col-sm-12">
-
                         <figure class="highcharts-figure">
-
                             <div id="container"></div>
-
-	                    </figure>
-
+                        </figure>
                         <p class="pt-3 d-flex justify-content-center"><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
                         <div align="center"><button id="stop" type="submit" class="pt-1 btn btn-success">Stop simulation</button></div>
-
-                        <!--<button type="button" type = "submit"  id="test-button2">Stop simulation.</button>-->
                     </div>
                 </div>
             </div>
@@ -34,7 +28,6 @@
     </div>
 {% endblock %}
 {% block scripts %}
-
     <script>
 
         $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
@@ -44,34 +37,32 @@
 
 
         });
+    </script>
 
-
-
+    <script>
+        // retrieves statistics using GET, refreshes graph data every 10 seconds
         $(function() {
             function refresh(){
                 $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-                console.log(data);
+                    console.log(data);
 
-	            round= data.round;
+	                round= data.round;
 
-                infected.push([round,data.stats.infected]);
-	            immune.push([round,data.stats.immune]);
-	            dead.push([round,data.stats.dead]);
+                    infected.push([round,data.stats.infected]);
+	                immune.push([round,data.stats.immune]);
+	                dead.push([round,data.stats.dead]);
 
-	            print_chart(round);
-
-
-            });
+	                print_chart(round);
+                });
             }
             var refreshIntervalId = setInterval(refresh, 10000);
         });
+    </script>
 
-
-
-
-
-
+    <script>
+        // sends POST to stop simulatiom
         $("#stop").click(function(){
+
             var aux_data = {"command": "stop", "id":"{{ id_simulation }}"}
 
             jQuery.ajax ({
@@ -86,13 +77,13 @@
 	            console.log(error);
 	        })
         });
+    </script>
 
-
+    <script>
 
         var infected = [[0,0]];
         var immune = [[0,0]];
         var dead = [[0,0]];
-
 
         function print_chart(number_of_rounds) {
 
@@ -101,7 +92,6 @@
                 title: {
                     text: 'Simulation statistics by round'
                 },
-
 
                 yAxis: {
                     title: {
@@ -158,15 +148,8 @@
                         }
                     }]
                 }
-
             });
-
         }
-
         print_chart(0);
-
-
-
     </script>
-
 {% endblock %}

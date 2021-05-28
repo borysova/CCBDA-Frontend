@@ -8,5 +8,4 @@ urlpatterns = [
     # ex: /
     path('', views.home, name='home'),
     path('simulation/', views.simulation_view, name='simulation'),
-    path('set-sim-var/', views.setSimState, name='ajax-test-view'),
 ]
