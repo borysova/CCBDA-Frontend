@@ -1,5 +1,5 @@
-# eb-django-express-signup
+# CCBDA Final Project Frontend Part
 
-This repository contains the Python 3.x code base of a small web application for a [tutorial](../../../Assignments-2020/blob/master/Lab04.md) that instructs on how to deploy a web app on PaaS **AWS Beanstalk**. The web app interacts with **Amazon DynamoDB**, **Amazon Simple Notification Service** and **Amazon Cloud Front**.
-
-*eb-django-express-signup* follows the popular Python framework [Django](https://www.djangoproject.com/).
+Cloud Computing and Big Data Analytics Final Project <br/>
+UPC (BarcelonaTech), Summer Semester 2021<br/>
+Group 3: Pol González Pacheco, Marc Catrisse Pérez, Francesc Roy Campderros, Mariia Borysova

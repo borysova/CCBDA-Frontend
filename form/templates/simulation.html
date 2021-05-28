@@ -1,27 +1,29 @@
 {% extends "generic.html" %}
 {% block contents %}
     <div class="row justify-content-md-center">
-        <div class="col-sm-8">
-            <div class="jumbotron" id="jumbohome">
-                <h1>Virus Spread Simulation</h1>
+        <div class="col-sm-12">
+            <div class="jumbotron" id="jumboparameters">
+                <p class="lead">Parameters of current simulation</p>
+            </div>
+            <div class="jumbotron" id="jumbograph">
                 <div class="row">
-                    <div class="col-sm-9">
-                        <p class="lead">Parameters</p>
-                        <p><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
+                    <div class="col-sm-12">
 
                         <figure class="highcharts-figure">
 
                             <div id="container"></div>
 
 	                    </figure>
+<<<<<<< HEAD
                         <button type="button" type = "submit"  id="test-button">Refresh graphics.</button>
+=======
+                        <p class="pt-3 d-flex justify-content-center"><a class="btn btn-success" href="{% url 'form:home' %}">Back to the homepage</a></p>
+                        <div align="center"><button id="stop" type="submit" class="pt-1 btn btn-success">Stop simulation</button></div>
+>>>>>>> c1313fbb138c9fbb47e1d5a0bdc2eee52cc3bb0f
                         <!--<button type="button" type = "submit"  id="test-button2">Stop simulation.</button>-->
                     </div>
                 </div>
             </div>
-        </div>
-        <div>
-            <!--<iframe src="https://i-o-optimized-deployment-07d883.kb.eu-west-1.aws.found.io:9243/s/sample-awesome-space/app/dashboards#/view/722b74f0-b882-11e8-a6d9-e546fe2bba5f?embed=true&_g=(filters:!())&_a=(description:'Analyze%20mock%20eCommerce%20orders%20and%20revenue',filters:!(),fullScreenMode:!f,options:(hidePanelTitles:!f,useMargins:!t),panels:!((embeddableConfig:(enhancements:(),vis:(colors:('Men!'s%20Accessories':%2382B5D8,'Men!'s%20Clothing':%23F9BA8F,'Men!'s%20Shoes':%23F29191,'Women!'s%20Accessories':%23F4D598,'Women!'s%20Clothing':%2370DBED,'Women!'s%20Shoes':%23B7DBAB))),gridData:(h:10,i:'1',w:36,x:12,y:18),id:'37cc8650-b882-11e8-a6d9-e546fe2bba5f',panelIndex:'1',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:(),vis:(colors:(FEMALE:%236ED0E0,MALE:%23447EBC),legendOpen:!f)),gridData:(h:11,i:'2',w:12,x:12,y:7),id:ed8436b0-b88b-11e8-a6d9-e546fe2bba5f,panelIndex:'2',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:7,i:'3',w:18,x:0,y:0),id:'09ffee60-b88c-11e8-a6d9-e546fe2bba5f',panelIndex:'3',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:7,i:'4',w:30,x:18,y:0),id:'1c389590-b88d-11e8-a6d9-e546fe2bba5f',panelIndex:'4',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:11,i:'5',w:48,x:0,y:28),id:'45e07720-b890-11e8-a6d9-e546fe2bba5f',panelIndex:'5',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:10,i:'6',w:12,x:0,y:18),id:'10f1a240-b891-11e8-a6d9-e546fe2bba5f',panelIndex:'6',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:11,i:'7',w:12,x:0,y:7),id:b80e6540-b891-11e8-a6d9-e546fe2bba5f,panelIndex:'7',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:(),vis:(colors:('0%20-%2050':%23E24D42,'50%20-%2075':%23EAB839,'75%20-%20100':%237EB26D),defaultColors:('0%20-%2050':'rgb(165,0,38)','50%20-%2075':'rgb(255,255,190)','75%20-%20100':'rgb(0,104,55)'),legendOpen:!f)),gridData:(h:11,i:'8',w:12,x:24,y:7),id:'4b3ec120-b892-11e8-a6d9-e546fe2bba5f',panelIndex:'8',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:(),vis:(colors:('0%20-%202':%23E24D42,'2%20-%203':%23F2C96D,'3%20-%204':%239AC48A),defaultColors:('0%20-%202':'rgb(165,0,38)','2%20-%203':'rgb(255,255,190)','3%20-%204':'rgb(0,104,55)'),legendOpen:!f)),gridData:(h:11,i:'9',w:12,x:36,y:7),id:'9ca7aa90-b892-11e8-a6d9-e546fe2bba5f',panelIndex:'9',type:visualization,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:18,i:'10',w:48,x:0,y:54),id:'3ba638e0-b894-11e8-a6d9-e546fe2bba5f',panelIndex:'10',type:search,version:'7.12.1'),(embeddableConfig:(enhancements:(),hiddenLayers:!(),isLayerTOCOpen:!f,mapBuffer:(maxLat:85.51845,maxLon:99.91497000000001,minLat:-1.9556700000000014,minLon:-130.06707),mapCenter:(lat:45.88578,lon:-15.07605,zoom:2.11),openTOCDetails:!()),gridData:(h:15,i:'11',w:24,x:0,y:39),id:'2c9c1f60-1909-11e9-919b-ffe5949a18d2',panelIndex:'11',type:map,version:'7.12.1'),(embeddableConfig:(enhancements:()),gridData:(h:15,i:'12',w:24,x:24,y:39),id:b72dd430-bb4d-11e8-9c84-77068524bcab,panelIndex:'12',type:visualization,version:'7.12.1')),query:(language:kuery,query:''),tags:!(),timeRestore:!t,title:'%5BeCommerce%5D%20Revenue%20Dashboard',viewMode:view)" height="600" width="800"></iframe>-->
         </div>
     </div>
 {% endblock %}
@@ -30,6 +32,28 @@
     <script>
 
 
+        $(function() {
+            function refresh(){
+                $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
+                console.log(data);
+
+	            round= data.round;
+
+                infected.push([round,data.stats.infected]);
+	            immune.push([round,data.stats.immune]);
+	            dead.push([round,data.stats.dead]);
+
+	            print_chart(round);
+
+
+            });
+            }
+            var refreshIntervalId = setInterval(refresh, 10000);
+        });
+
+
+
+        /*
 
 
         $("#test-button").click(function(){
@@ -47,12 +71,10 @@
 
 
             });
-        });
+        }); */
 
 
-        /* Not implemented yet...
-
-        $("#test-button2").click(function(){
+        $("#stop").click(function(){
             var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
 
             jQuery.ajax ({
@@ -67,7 +89,7 @@
 	            console.log(error);
 	        })
         });
-        */
+
 
 
         var infected = [[0,0]];
