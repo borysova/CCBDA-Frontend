@@ -99,7 +99,7 @@
                                 <label class="form-check-label pb-4" for="beacons">Beacons</label>
                             </div>
                             {% csrf_token %}<!--Necessary tag...-->
-                            <input type="hidden" name="id_simulation" id="id_simulation">
+                            <input type="hidden" name="id_simulation" id="id_simulation" value="hola">
                         </form>
 
 
@@ -186,6 +186,9 @@
 	        }).fail(function(xhr, error){
 	            console.log(error);
 
+	            $("#start").removeAttr("disabled");
+	            $("#allocate").prop('disabled', 'disabled');
+
 	        })
     });
 
@@ -211,23 +214,29 @@
                 dataType: "json",
                 contentType: "application/json"
 	        }).done(function(data){
-	            console.log(data);
-	                    $.ajax({
-                        type: "POST",
-                        url: '{{ 'set-sim-var/'}}',
-                        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
-                        text: "True"},
-                });
-	            $.ajax({
-                type: 'POST',
-                url: {% url 'form:simulation' %},
-                );
 
-                //window.location.href="{% url 'form:simulation' %}";
+	            console.log(data);
+
+	            // SET id_simulation VALUE!!!!
+
+                //$.ajax({
+                //type: "POST",
+                //url: '{{ 'set-sim-var/'}}',
+                //data: {csrfmiddlewaretoken: '{{ csrf_token }}',
+                //text: "True"},
+                //});
+	            //$.ajax({
+                //type: 'POST',
+                //url: {% url 'form:simulation' %},
+                //);
+
+
                 document.getElementById("parametersForm").submit();
 
 	        }).fail(function(xhr, error){
 	            console.log(error);
+
+	            document.getElementById("parametersForm").submit();
 
 	        })
     });

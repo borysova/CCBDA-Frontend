@@ -4,6 +4,13 @@
         <div class="col-sm-12">
             <div class="jumbotron" id="jumboparameters">
                 <p class="lead">Parameters of current simulation</p>
+                <p>Individuals: {{ individuals }}</p>
+                <p>Incubation: {{ incubation }}</p>
+                <p>Symptomatic: {{ symptomatic }}</p>
+                <p>Immunity: {{ immunity }}</p>
+                <p>Mortality: {{ mortality }}</p>
+                <p>Scale of city: {{ scale_city }}</p>
+                <p>Max. rounds: {{ max_rounds }}</p>
             </div>
             <div class="jumbotron" id="jumbograph">
                 <div class="row">
@@ -73,7 +80,7 @@
 
 
         $("#stop").click(function(){
-            var aux_data = {"command": "stop", "id":"arn:aws:ecs:eu-west-1:359072603960:task/default/f8c3148bf62a4dbda9718eefa0d2513f"}
+            var aux_data = {"command": "stop", "id":"{{ id_simulation }}"}
 
             jQuery.ajax ({
                 url: "https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/job-issuer",
