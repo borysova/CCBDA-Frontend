@@ -4,14 +4,14 @@
         <div class="col-sm-12">
             <div class="jumbotron" id="jumboparameters">
                 <p class="lead">Parameters of current simulation</p>
-                <p>Individuals: {{ individuals }}</p>
-                <p>Incubation: {{ incubation }}</p>
-                <p>Symptomatic: {{ symptomatic }}</p>
-                <p>Immunity: {{ immunity }}</p>
-                <p>Mortality: {{ mortality }}</p>
-                <p>Scale of city: {{ scale_city }}</p>
-                <p>Max. rounds: {{ max_rounds }}</p>
-                <p>Beacons: {{ beacons }}</p>
+                <p id="individuals">Individuals: {{ individuals }}</p>
+                <p id="incubation">Incubation: {{ incubation }}</p>
+                <p id="symptomatic">Symptomatic: {{ symptomatic }}</p>
+                <p id="immunity">Immunity: {{ immunity }}</p>
+                <p id="mortality">Mortality: {{ mortality }}</p>
+                <p id="scale_city">Scale of city: {{ scale_city }}</p>
+                <p id="max_rounds">Max. rounds: {{ max_rounds }}</p>
+                <p id="beacons">Beacons: {{ beacons }}</p>
             </div>
             <div class="jumbotron" id="jumbograph">
                 <div class="row">
@@ -37,6 +37,15 @@
 
     <script>
 
+        $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
+                console.log(data);
+
+	            $("#individuals").html("Individuals: " +"hola");
+
+
+        });
+
+
 
         $(function() {
             function refresh(){
@@ -59,25 +68,7 @@
 
 
 
-        /*
 
-
-        $("#test-button").click(function(){
-
-            $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
-                console.log(data);
-
-	            round= data.round;
-
-                infected.push([round,data.stats.infected]);
-	            immune.push([round,data.stats.immune]);
-	            dead.push([round,data.stats.dead]);
-
-	            print_chart(round);
-
-
-            });
-        }); */
 
 
         $("#stop").click(function(){

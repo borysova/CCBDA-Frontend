@@ -105,6 +105,8 @@
 
                         <button type="button" type = "submit"  id="allocate" class="btn btn-success mr-1">Allocate city</button>
                         <button type="button" type = "submit"  id="start"  class="btn btn-success" disabled>Start simulation</button>
+                        <button type="button" type = "submit"  id="go_to_simulation"  class="btn btn-success" disabled>Go to simulation results</button>
+
 
                     </div>
                 </div></div>
@@ -185,22 +187,18 @@
 
 	        }).fail(function(xhr, error){
 	            console.log(error);
+	            alert("A simulation is already going on.");
+	            $("#go_to_simulation").removeAttr("disabled");
 
 
 
 	        })
     });
 
-/*
 
-    $("#test-button").click(function(){
-        $.ajax({
-        type: "POST",
-        url: '{{ 'set-sim-var/'}}',
-        data: {csrfmiddlewaretoken: '{{ csrf_token }}',
-              text: "True"},
+    $("#go_to_simulation").click(function(){
+        window.location.href = {% url 'form:simulation' %};
     });
-    });*/
 
 
     $("#start").click(function(){
@@ -216,7 +214,7 @@
 
 	            console.log(data);
 
-	            // SET id_simulation VALUE!!!!
+	            #$("#id_simulation").val(data.)
 
                 //$.ajax({
                 //type: "POST",
