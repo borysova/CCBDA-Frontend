@@ -33,7 +33,14 @@
         $.get("https://860ty33200.execute-api.eu-west-1.amazonaws.com/ccbda/stats?id=1", function(data, status){
                 console.log(data);
 
-	            $("#individuals").html("Individuals: " +"hola");
+	            $("#individuals").html("Individuals: " +"");
+	            $("#incubation").html("Incubation: " + data.incubation);
+	            $("#symptomatic").html("Symptomatic: " +data.symptomatic);
+	            $("#immunity").html("Immunity: " +data.immunity);
+	            $("#mortality").html("Mortality: " +data.mortality);
+	            $("#scale_city").html("Scale of city: " +"");
+	            $("#max_rounds").html("Max. rounds: " +data.max_rounds);
+	            $("#beacons").html("Beacons: " +data.beacons);
 
 
         });
