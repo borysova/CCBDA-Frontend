@@ -14,7 +14,7 @@
                         parameters that determine how the virus spreads. Model includes a city with different types of locations (work, home, recreational locations) and city residents
                         who each round move around the city following their daily agenda. </p>
                     <p>On the top of this we provide a possibility to simulate a tracking system. It allows individuals to discover that they have been in contact with the infected.
-                        This system is based on the exchange of beacons between people. Once a person is infected, individuals that were in contact with him/her in the last 14 days are notified.</p>
+                        This system is based on the exchange of beacons between people. Once a person is infected, individuals that were in contact with him/her are notified and placed in the quarantine for 15 days.</p>
                     <p class="pb-3">Thus, it is possible to evaluate if beacons can slow down the spread of the virus.</p>
                 </div>
             </div>
@@ -30,22 +30,22 @@
                             Individuals also have different infection status. They can be healthy, in the incubation phase, asymptomatic infection phase, symptomatic infection phase, died or immune.
                         </li>
                         <li class="list-group-item"><p><strong>Incubation Time</strong></p>
-                            Number of rounds during which the incubation period lasts.
+                            Number of rounds during which the incubation period lasts <strong>(one day corresponds to 4 rounds) </strong>.
                         </li>
                         <li class="list-group-item"><p><strong>Symptomatic Seed</strong></p>
-                            ???
+                            Percentage of infected people at the start of the simulation.
                         </li>
                         <li class="list-group-item"><p><strong>Immunity Rate</strong></p>
-                            The likelihood that a person will not contract the virus after contact with an infected. ???
+                            Percentage of immune people at the start of the simulation.
                         </li>
                         <li class="list-group-item"><p><strong>Mortality Rate</strong></p>
                             The likelihood that a person will die after being infected with a virus.
                         </li>
                         <li class="list-group-item"><p><strong>Scale City</strong></p>
-                            ???
+                            Irrelevant for the final implementation. Was not removed because of the time reasons :(
                         </li>
                         <li class="list-group-item"><p><strong>Maximum Number of Rounds</strong></p>
-                            Number of rounds in the simulation. People are moved from the one place to another after end of each round.
+                            Number of rounds in the simulation. People are moved from the one place to another after end of each round. <strong>One day corresponds to 4 rounds. </strong>
                         </li>
                         <li class="list-group-item"><p><strong>Beacons</strong></p>
                             Identifies if beacons will be used to notify people that were in contact with an infected person.
